@@ -1,7 +1,7 @@
 .DS_Store
 /.svelte-kit
 /dist
-/build
+/public
 node_modules
 
 # Specific file(s) to ignore

@@ -31,7 +31,7 @@ module.exports = {
 			},
 		},
 	],
-	ignorePatterns: ['./.svelte-kit', './dist', './build', './static', '*.cjs', 'node_modules'],
+	ignorePatterns: ['./.svelte-kit', './dist', './public', './static', '*.cjs', 'node_modules'],
 	rules: {
 		indent: [
 			2,
