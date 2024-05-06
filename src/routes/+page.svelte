@@ -1,58 +1,169 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import AnimateOnEnter from '$lib/index.svelte';
+
 	import Card from '../components/Card.svelte';
 	import Pill from '../components/Pill.svelte';
 
-	let directions = ['up', 'right', 'down', 'left'];
-	let fades = ['fade', 'fade-up', 'fade-right', 'fade-down', 'fade-left'];
+	const DIRECTIONS = ['up', 'right', 'down', 'left', 'up-slow', 'right-slow', 'down-slow', 'left-slow', 'up-fast', 'right-fast', 'down-fast', 'left-fast'];
+	const FADES = [
+		'fade',
+		'fade-up',
+		'fade-right',
+		'fade-down',
+		'fade-left',
+		'fade-up-slow',
+		'fade-right-slow',
+		'fade-down-slow',
+		'fade-left-slow',
+		'fade-up-fast',
+		'fade-right-fast',
+		'fade-down-fast',
+		'fade-left-fast',
+	];
+
+	let rootMargin = '0px';
+
+	let threshold = 0.3;
+
+	let isReady = false;
+
+	// @ts-ignore
+	const handleInputRootMargin = (event) => {
+		if (event.target.value !== '') {
+			rootMargin = event.target.value;
+		} else {
+			rootMargin = '0px';
+		}
+
+		try {
+			window.localStorage?.setItem('rootMargin', rootMargin);
+		} catch (error) {
+			console.error('handleInputRootMargin: Local storage is not available', error);
+		}
+
+		if (!rootMargin.includes('px') && !rootMargin.includes('%')) {
+			rootMargin = `${event.target.value}px`;
+		}
+
+		isReady = false;
+
+		setTimeout(() => {
+			isReady = true;
+		}, 0);
+	};
+
+	// @ts-ignore
+	const handleInputThreshold = (event) => {
+		if (event.target.value !== '') {
+			threshold = Number(event.target.value);
+		} else {
+			threshold = 0;
+		}
+
+		window.localStorage?.setItem('threshold', String(threshold));
+
+		try {
+			window.localStorage?.setItem('threshold', String(threshold));
+		} catch (error) {
+			console.error('handleInputThreshold: Local storage is not available', error);
+		}
+
+		isReady = false;
+
+		setTimeout(() => {
+			isReady = true;
+		}, 0);
+	};
+
+	const handleResetValue = () => {
+		rootMargin = '0px';
+		threshold = 0.3;
+
+		isReady = false;
+
+		setTimeout(() => {
+			isReady = true;
+		}, 0);
+	};
+
+	onMount(() => {
+		try {
+			rootMargin = window.localStorage?.getItem('rootMargin') || '0px';
+			threshold = Number(window.localStorage?.getItem('threshold')) || 0.3;
+		} catch (error) {
+			console.error('onMount: Local storage is not available', error);
+		}
+
+		isReady = true;
+	});
 </script>
 
 <svelte:head>
-	<title>Svelte AnimateOnEnter // svelte-aoe</title>
-	<meta
-		name="description"
-		content="Create captivating web experiences with the svelte-aoe package."
-	/>
+	<title>@castlenine/svelte-aoe</title>
+	<meta name="description" content="A Svelte component to animate elements, without dependencies." />
 </svelte:head>
 
-<AnimateOnEnter />
+{#if isReady}
+	<AnimateOnEnter {rootMargin} {threshold} />
 
-<main>
-	<section class="text-gray-600 body-font">
-		<div class="container px-5 pt-28 mx-auto">
-			<div class="flex flex-wrap w-full mb-2">
-				<div class="lg:w-1/2 w-full mb-2 lg:mb-0">
-					<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Directions</h1>
-					<div class="h-1 w-20 bg-yellow-300 rounded" />
+	<main>
+		<section class="text-gray-600 body-font">
+			<div class="container px-5 pt-28 mx-auto">
+				<a
+					class="sm:text-5xl text-4xl font-medium title-font text-gray-900 mb-10 inline-block hover:opacity-70 underline"
+					href="https://www.npmjs.com/package/@castlenine/svelte-aoe"
+					target="_blank">@castlenine/svelte-aoe</a
+				>
+				<h2 class="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">Change values:</h2>
+				<div class="flex flex-col gap-4">
+					<div>
+						<label for="root-margin" class="font-medium">Root margin:</label>
+						<input id="root-margin" class="border p-1" type="text" on:change={handleInputRootMargin} value={rootMargin} />
+					</div>
+					<div>
+						<label for="threshold" class="font-medium">Threshold:</label>
+						<input id="threshold" class="border p-1" type="number" min="0" max="1.0" step="0.01" on:change={handleInputThreshold} value={threshold} />
+					</div>
+					<div>
+						<button class="bg-violet-800 rounded px-4 py-1 text-zinc-50 mt-2" on:click={handleResetValue}>Reset</button>
+					</div>
 				</div>
-				<div class="lg:w-1/2 w-full leading-relaxed text-gray-500">
-					{#each directions as direction}
-						<Pill label={direction} />
-					{/each}
+				<div class="flex flex-wrap w-full mb-2 mt-10">
+					<div class="lg:w-1/2 w-full mb-2 lg:mb-0">
+						<h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Directions</h2>
+						<div class="h-1 w-20 bg-violet-500 rounded" />
+					</div>
+					<div class="lg:w-1/2 w-full leading-relaxed text-gray-500">
+						{#each DIRECTIONS as direction}
+							<Pill label={direction} />
+						{/each}
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	{#each directions as direction}
-		<Card aoe={direction} />
-	{/each}
+		</section>
+		{#each DIRECTIONS as direction}
+			<Card aoe={direction} />
+		{/each}
 
-	<section class="text-gray-600 body-font">
-		<div class="container px-5 pt-28 mx-auto">
-			<div class="flex flex-wrap w-full mb-2">
-				<div class="lg:w-1/2 w-full mb-2 lg:mb-0">
-					<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Fades</h1>
-					<div class="h-1 w-20 bg-yellow-300 rounded" />
-				</div>
-				<div class="lg:w-1/2 w-full leading-relaxed text-gray-500">
-					{#each fades as fade}
-						<Pill label={fade} />
-					{/each}
+		<section class="text-gray-600 body-font">
+			<div class="container px-5 pt-28 mx-auto">
+				<div class="flex flex-wrap w-full mb-2">
+					<div class="lg:w-1/2 w-full mb-2 lg:mb-0">
+						<h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Fades</h2>
+						<div class="h-1 w-20 bg-violet-500 rounded" />
+					</div>
+					<div class="lg:w-1/2 w-full leading-relaxed text-gray-500">
+						{#each FADES as fade}
+							<Pill label={fade} />
+						{/each}
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	{#each fades as fade}
-		<Card aoe={fade} />
-	{/each}
-</main>
+		</section>
+		{#each FADES as fade}
+			<Card aoe={fade} />
+		{/each}
+	</main>
+{/if}
