@@ -29,7 +29,6 @@
 		"strictFunctionTypes": true, // Enable strict checking of function types
 		"strictNullChecks": true, // Enable strict null checks
 		"strictPropertyInitialization": true, // Enable strict checking of property initialization in classes
-		"verbatimModuleSyntax": true // Forces you to use import type and export type
 	},
 	"include": [
 		"src/**/*.d.ts",

@@ -19,6 +19,7 @@ ignoreFiles:
   - svelte-kit/**
   - static/**
   - build/**
+  - dist/**
 
 plugins:
   # - stylelint-at-rule-no-children

@@ -1,6 +1,7 @@
 .DS_Store
 /.svelte-kit
 /dist
+/build
 node_modules
 
 vite.config.js.timestamp-*
