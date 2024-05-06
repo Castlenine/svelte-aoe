@@ -11,7 +11,7 @@ A Svelte component to animate elements, without dependencies
 
 When the element is detected as being in the viewport, `@castlenine/svelte-aoe` applies a class that triggers a CSS animation.
 
-## 🚀 [Demo](https://casltenine-svelte-aoe.vercel.app/)
+## 🚀 [Demo](https://castlenine-svelte-aoe.vercel.app/)
 
 ## Installation
 
@@ -117,7 +117,7 @@ You can add your own animations by following the same pattern in your CSS.
 | `rootMargin`  | `string` in pixel (`px`) or percentage (`%`) | `0px`         |
 | `threshold`   | `number`, `number[]` between `0` and `1.0`   | `0.3`         |
 
-`root` is the element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target. Defaults to the browser viewport if not specified or if `null`. Defaults to `null` (browser viewport).
+`root` is the element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target. Defaults to the browser viewport if not specified or if `null`.
 
 `rootMargin` is the margin around the root. Can have values similar to the CSS margin property, e.g. `"10px 20px 30px 40px"` (top, right, bottom, left). The values can be percentages. Defaults to `'0px'` (no margin).
 
@@ -125,7 +125,7 @@ You can add your own animations by following the same pattern in your CSS.
 
 ---
 
-Inspired by [Animate on Scroll](https://michalsnik.github.io/aos/) and [lliamscholtz/svelte-aoe](https://github.com/lliamscholtz/svelte-aoe)
+Inspired by [Animate on Scroll](https://michalsnik.github.io/aos/) and forked from [lliamscholtz/svelte-aoe](https://github.com/lliamscholtz/svelte-aoe)
 
 [npm]: https://www.npmjs.com/package/@castlenine/svelte-aoe
 [npm.badge]: https://img.shields.io/npm/v/@castlenine/svelte-aoe

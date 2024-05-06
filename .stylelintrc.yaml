@@ -18,7 +18,7 @@ ignoreFiles:
   - node_modules/*
   - svelte-kit/**
   - static/**
-  - build/**
+  - public/**
   - dist/**
 
 plugins:

@@ -41,6 +41,7 @@
 		"*.cjs",
 		"dist",
 		"node_modules",
+		"public",
 		"static",
 		"svelte-kit",
 	]
