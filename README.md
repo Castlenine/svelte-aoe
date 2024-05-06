@@ -93,6 +93,36 @@ File: `src/routes/+layout.svelte`
 - `fade-left-slow`
 - `fade-down-slow`
 
+### Normal speed partial fade
+
+Start wih `0.25` opacity
+
+- `partial-fade`
+- `partial-fade-up`
+- `partial-fade-right`
+- `partial-fade-left`
+- `partial-fade-down`
+
+### Fast speed partial fade
+
+Start wih `0.25` opacity
+
+- `partial-fade-fast`
+- `partial-fade-up-fast`
+- `partial-fade-right-fast`
+- `partial-fade-left-fast`
+- `partial-fade-down-fast`
+
+### Slow speed partial fade
+
+Start wih `0.25` opacity
+
+- `partial-fade-slow`
+- `partial-fade-up-slow`
+- `partial-fade-right-slow`
+- `partial-fade-left-slow`
+- `partial-fade-down-slow`
+
 You can add your own animations by following the same pattern in your CSS.
 
 ```css

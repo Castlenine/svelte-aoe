@@ -7,20 +7,38 @@
 	import Pill from '../components/Pill.svelte';
 
 	const DIRECTIONS = ['up', 'right', 'down', 'left', 'up-slow', 'right-slow', 'down-slow', 'left-slow', 'up-fast', 'right-fast', 'down-fast', 'left-fast'];
+
 	const FADES = [
 		'fade',
 		'fade-up',
 		'fade-right',
 		'fade-down',
 		'fade-left',
+		'fade-slow',
 		'fade-up-slow',
 		'fade-right-slow',
 		'fade-down-slow',
 		'fade-left-slow',
+		'fade-fast',
 		'fade-up-fast',
 		'fade-right-fast',
 		'fade-down-fast',
 		'fade-left-fast',
+		'partial-fade',
+		'partial-fade-up',
+		'partial-fade-right',
+		'partial-fade-down',
+		'partial-fade-left',
+		'partial-fade-slow',
+		'partial-fade-up-slow',
+		'partial-fade-right-slow',
+		'partial-fade-down-slow',
+		'partial-fade-left-slow',
+		'partial-fade-fast',
+		'partial-fade-up-fast',
+		'partial-fade-right-fast',
+		'partial-fade-down-fast',
+		'partial-fade-left-fast',
 	];
 
 	let rootMargin = '0px';

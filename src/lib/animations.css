@@ -355,7 +355,211 @@
 	}
 }
 
-/** You can add your own animations by following the same pattern
+/* **************************************************** */
+/* partial-fade-[direction] */
+
+/* normal speed */
+[data-aoe='partial-fade'] {
+	opacity: 0.25;
+	transition: opacity 900ms;
+
+	&.aoe {
+		opacity: 1;
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-up'] {
+	opacity: 0.25;
+	transform: translateY(45px);
+	transition:
+		transform 600ms,
+		opacity 900ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-right'] {
+	opacity: 0.25;
+	transform: translateX(-45px);
+	transition:
+		transform 600ms,
+		opacity 900ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-down'] {
+	opacity: 0.25;
+	transform: translateY(-45px);
+	transition:
+		transform 600ms,
+		opacity 900ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-left'] {
+	opacity: 0.25;
+	transform: translateX(45px);
+	transition:
+		transform 600ms,
+		opacity 900ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+/* fast speed */
+[data-aoe='partial-fade-fast'] {
+	opacity: 0.25;
+	transition: opacity 555ms;
+
+	&.aoe {
+		opacity: 1;
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-up-fast'] {
+	opacity: 0.25;
+	transform: translateY(45px);
+	transition:
+		transform 370ms,
+		opacity 555ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-right-fast'] {
+	opacity: 0.25;
+	transform: translateX(-45px);
+	transition:
+		transform 370ms,
+		opacity 555ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-down-fast'] {
+	opacity: 0.25;
+	transform: translateY(-45px);
+	transition:
+		transform 370ms,
+		opacity 555ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-left-fast'] {
+	opacity: 0.25;
+	transform: translateX(45px);
+	transition:
+		transform 370ms,
+		opacity 555ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+/* slow speed */
+[data-aoe='partial-fade-slow'] {
+	opacity: 0.25;
+	transition: opacity 1500ms;
+
+	&.aoe {
+		opacity: 1;
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-up-slow'] {
+	opacity: 0.25;
+	transform: translateY(45px);
+	transition:
+		transform 975ms,
+		opacity 1500ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-right-slow'] {
+	opacity: 0.25;
+	transform: translateX(-45px);
+	transition:
+		transform 975ms,
+		opacity 1500ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-down-slow'] {
+	opacity: 0.25;
+	transform: translateY(-45px);
+	transition:
+		transform 975ms,
+		opacity 1500ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+[data-aoe='partial-fade-left-slow'] {
+	opacity: 0.25;
+	transform: translateX(45px);
+	transition:
+		transform 975ms,
+		opacity 1500ms;
+
+	&.aoe {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: 0s;
+	}
+}
+
+/** You can add your own animations by following the same in your own css file
 [data-aoe='your-animation'] {
 	transform: translateX(-45px);
 	transition:
