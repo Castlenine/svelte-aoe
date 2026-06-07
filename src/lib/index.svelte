@@ -18,7 +18,7 @@
 					}
 				});
 			},
-			{ root, rootMargin, threshold }
+			{ root, rootMargin, threshold },
 		);
 
 		document.querySelectorAll('[data-aoe]').forEach((el) => OBSERVER.observe(el));
