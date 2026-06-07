@@ -9,25 +9,21 @@
 	export let threshold: number | number[] | undefined = 0.3;
 
 	onMount(() => {
-		const ELEMENTS_TO_LOAD_IN = new Set([...document.querySelectorAll('[data-aoe]')]);
+		const OBSERVER = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('aoe');
+						OBSERVER.unobserve(entry.target);
+					}
+				});
+			},
+			{ root, rootMargin, threshold }
+		);
 
-		const OBSERVER_OPTIONS = {
-			root,
-			rootMargin,
-			threshold,
-		};
+		document.querySelectorAll('[data-aoe]').forEach((el) => OBSERVER.observe(el));
 
-		function observerCallback(entries: IntersectionObserverEntry[]) {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('aoe');
-				}
-			});
-		}
-
-		const OBSERVER = new IntersectionObserver(observerCallback, OBSERVER_OPTIONS);
-
-		ELEMENTS_TO_LOAD_IN.forEach((el) => OBSERVER.observe(el));
+		return () => OBSERVER.disconnect();
 	});
 </script>
 
