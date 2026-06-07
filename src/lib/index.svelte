@@ -38,7 +38,7 @@ This component is used to animate elements when they enter the viewport with the
 
 &nbsp;
 
-@param {Document | Element | null | undefined} `root` - The element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target. Defaults to the browser viewport if not specified or if null. Defaults to null (browser viewport).
+@param {Document | Element | null | undefined} `root` - The element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target. Defaults to the browser viewport if not specified or if `null`.
 @param {string | undefined} `rootMargin` - Margin around the root. Can have values similar to the CSS margin property, e.g. "10px 20px 30px 40px" (top, right, bottom, left). The values can be percentages. Defaults to '0px' (no margin).
 @param {number | number[]} `threshold` - Either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. A value of 0.0 indicates that even a single pixel of the target is visible. A value of 1.0 indicates that the target is completely visible. Defaults to 0.3 (30%).
 -->

@@ -559,7 +559,7 @@
 	}
 }
 
-/** You can add your own animations by following the same in your own css file
+/** You can add your own animations by following the same pattern in your own CSS file
 [data-aoe='your-animation'] {
 	transform: translateX(-45px);
 	transition:

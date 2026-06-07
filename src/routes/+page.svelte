@@ -120,7 +120,7 @@
 
 <svelte:head>
 	<title>@castlenine/svelte-aoe</title>
-	<meta name="description" content="A Svelte component to animate elements, without dependencies." />
+	<meta name="description" content="A Svelte component to animate elements, with no dependencies." />
 </svelte:head>
 
 {#if isReady}
