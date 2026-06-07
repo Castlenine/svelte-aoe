@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 
 	import AnimateOnEnter from '$lib/index.svelte';
+	import { AnimateOnEnterScope } from '$lib/index';
 
 	import Card from '../components/Card.svelte';
 	import Pill from '../components/Pill.svelte';
@@ -202,5 +203,27 @@
 		<Card aoe="fade-up" aoeThreshold="0" />
 		<Card aoe="fade-up" aoeThreshold="1" />
 		<Card aoe="fade-up" aoeRootMargin="200px" />
+
+		<section class="text-gray-600 body-font">
+			<div class="container px-5 pt-28 mx-auto">
+				<div class="flex flex-wrap w-full mb-2">
+					<div class="lg:w-1/2 w-full mb-2 lg:mb-0">
+						<h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Scoped Overrides</h2>
+						<div class="h-1 w-20 bg-amber-500 rounded" />
+					</div>
+					<div class="lg:w-1/2 w-full leading-relaxed text-gray-500">
+						<Pill label="data-aoe-scope" />
+						<Pill label="AnimateOnEnterScope" />
+					</div>
+				</div>
+			</div>
+		</section>
+		<AnimateOnEnterScope threshold={0} class="container mx-auto px-5">
+			<p class="text-sm text-gray-500 mb-4 bg-amber-100 p-2 rounded">
+				Inside <code>&lt;AnimateOnEnterScope threshold=&#123;0&#125;&gt;</code> — all elements animate as soon as 1px is visible
+			</p>
+			<Card aoe="fade-left" />
+			<Card aoe="fade-right" />
+		</AnimateOnEnterScope>
 	</main>
 {/if}

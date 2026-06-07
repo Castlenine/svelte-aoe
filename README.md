@@ -143,9 +143,45 @@ You can add your own animations by following the same pattern in your CSS.
 
 `threshold` is either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. A value of `0.0` or `0` indicates that even a single pixel of the target is visible. A value of `1.0` or `1` indicates that the target is completely visible. Defaults to `0.3` (30%).
 
+## Scoped Overrides
+
+Set defaults for all `data-aoe` elements within a page or section using `data-aoe-scope` on a container element, or the `<AnimateOnEnterScope>` convenience component. Elements inside a scope inherit its values unless they have their own per-element `data-aoe-*` overrides.
+
+### Using `data-aoe-scope` attribute
+
+```svelte
+<div data-aoe-scope data-aoe-threshold="0.5" data-aoe-root-margin="20px">
+  <!-- All elements inside use threshold=0.5 and rootMargin=20px -->
+  <img data-aoe="fade-up" src="..." />
+
+  <!-- Per-element override still takes priority -->
+  <img data-aoe="fade-up" data-aoe-threshold="0.8" src="..." />
+</div>
+```
+
+### Using `<AnimateOnEnterScope>` component
+
+```svelte
+<script>
+  import { AnimateOnEnterScope } from '@castlenine/svelte-aoe';
+</script>
+
+<AnimateOnEnterScope threshold={0.5} rootMargin="20px">
+  <img data-aoe="fade-up" src="..." />
+</AnimateOnEnterScope>
+```
+
+| Property name | Type                                         | Default value |
+| ------------- | -------------------------------------------- | ------------- |
+| `root`        | CSS selector `string`                        | `undefined`   |
+| `rootMargin`  | `string` in pixel (`px`) or percentage (`%`) | `undefined`   |
+| `threshold`   | `number` between `0` and `1.0`               | `undefined`   |
+
+Scopes can be nested. The innermost scope wins.
+
 ## Per-Element Overrides
 
-Individual elements can override the global properties using `data-aoe-*` attributes. If an attribute is not set, the value from `<AnimateOnEnter />` is used, which itself falls back to the package default.
+Individual elements can override scope or global properties using `data-aoe-*` attributes. If an attribute is not set, the value from the nearest `data-aoe-scope` ancestor is used, then `<AnimateOnEnter />`, then the package default.
 
 | Attribute            | Type                                           | Overrides    |
 | -------------------- | ---------------------------------------------- | ------------ |
