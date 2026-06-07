@@ -4,8 +4,9 @@ node_modules/
 # SvelteKit
 .svelte-kit/
 
-# Dist output
+# Output
 dist/
+public/
 
 # Vite
 vite.config.js.timestamp-*
