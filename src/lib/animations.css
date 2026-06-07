@@ -1,565 +1,81 @@
 /* **************************************************** */
-/* [direction] */
+/* Base: shared transitions and configurable defaults */
 
-/* normal speed */
-[data-aoe='up'] {
-	transform: translateY(45px);
+[data-aoe] {
+	--_aoe-distance: 45px;
+	--_aoe-t-transform: 600ms;
+	--_aoe-t-opacity: 900ms;
 	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='right'] {
-	transform: translateX(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='down'] {
-	transform: translateY(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='left'] {
-	transform: translateX(45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-/* fast speed */
-[data-aoe='up-fast'] {
-	transform: translateY(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='right-fast'] {
-	transform: translateX(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='down-fast'] {
-	transform: translateY(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='left-fast'] {
-	transform: translateX(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-/* slow speed */
-[data-aoe='up-slow'] {
-	transform: translateY(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='right-slow'] {
-	transform: translateX(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='down-slow'] {
-	transform: translateY(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='left-slow'] {
-	transform: translateX(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+		transform var(--_aoe-t-transform),
+		opacity var(--_aoe-t-opacity);
 }
 
 /* **************************************************** */
-/* fade-[direction] */
+/* Speed modifiers */
 
-/* normal speed */
-[data-aoe='fade'] {
-	opacity: 0;
-	transition: opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
+[data-aoe$='-fast'] {
+	--_aoe-t-transform: 370ms;
+	--_aoe-t-opacity: 555ms;
 }
 
-[data-aoe='fade-up'] {
-	opacity: 0;
-	transform: translateY(45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-right'] {
-	opacity: 0;
-	transform: translateX(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-down'] {
-	opacity: 0;
-	transform: translateY(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-left'] {
-	opacity: 0;
-	transform: translateX(45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-/* fast speed */
-[data-aoe='fade-fast'] {
-	opacity: 0;
-	transition: opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-up-fast'] {
-	opacity: 0;
-	transform: translateY(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-right-fast'] {
-	opacity: 0;
-	transform: translateX(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-down-fast'] {
-	opacity: 0;
-	transform: translateY(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-left-fast'] {
-	opacity: 0;
-	transform: translateX(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-/* slow speed */
-[data-aoe='fade-slow'] {
-	opacity: 0;
-	transition: opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-up-slow'] {
-	opacity: 0;
-	transform: translateY(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-right-slow'] {
-	opacity: 0;
-	transform: translateX(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-down-slow'] {
-	opacity: 0;
-	transform: translateY(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='fade-left-slow'] {
-	opacity: 0;
-	transform: translateX(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+[data-aoe$='-slow'] {
+	--_aoe-t-transform: 975ms;
+	--_aoe-t-opacity: 1500ms;
 }
 
 /* **************************************************** */
-/* partial-fade-[direction] */
+/* Direction: initial displaced state */
 
-/* normal speed */
-[data-aoe='partial-fade'] {
-	opacity: 0.25;
-	transition: opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
+[data-aoe*='up'] {
+	transform: translateY(var(--_aoe-distance));
 }
 
-[data-aoe='partial-fade-up'] {
-	opacity: 0.25;
-	transform: translateY(45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
+[data-aoe*='right'] {
+	transform: translateX(calc(-1 * var(--_aoe-distance)));
 }
 
-[data-aoe='partial-fade-right'] {
-	opacity: 0.25;
-	transform: translateX(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+[data-aoe*='down'] {
+	transform: translateY(calc(-1 * var(--_aoe-distance)));
 }
 
-[data-aoe='partial-fade-down'] {
-	opacity: 0.25;
-	transform: translateY(-45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
+[data-aoe*='left'] {
+	transform: translateX(var(--_aoe-distance));
 }
 
-[data-aoe='partial-fade-left'] {
-	opacity: 0.25;
-	transform: translateX(45px);
-	transition:
-		transform 600ms,
-		opacity 900ms;
+/* **************************************************** */
+/* Opacity: initial hidden state */
 
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+[data-aoe^='fade'] {
+	opacity: 0;
 }
 
-/* fast speed */
-[data-aoe='partial-fade-fast'] {
+[data-aoe^='partial-fade'] {
 	opacity: 0.25;
-	transition: opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
 }
 
-[data-aoe='partial-fade-up-fast'] {
-	opacity: 0.25;
-	transform: translateY(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
+/* **************************************************** */
+/* Animated state */
 
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
+[data-aoe].aoe {
+	transition-delay: 0s;
 }
 
-[data-aoe='partial-fade-right-fast'] {
-	opacity: 0.25;
-	transform: translateX(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+[data-aoe*='up'].aoe,
+[data-aoe*='down'].aoe {
+	transform: translateY(0);
 }
 
-[data-aoe='partial-fade-down-fast'] {
-	opacity: 0.25;
-	transform: translateY(-45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
+[data-aoe*='right'].aoe,
+[data-aoe*='left'].aoe {
+	transform: translateX(0);
 }
 
-[data-aoe='partial-fade-left-fast'] {
-	opacity: 0.25;
-	transform: translateX(45px);
-	transition:
-		transform 370ms,
-		opacity 555ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
+[data-aoe^='fade'].aoe,
+[data-aoe^='partial-fade'].aoe {
+	opacity: 1;
 }
 
-/* slow speed */
-[data-aoe='partial-fade-slow'] {
-	opacity: 0.25;
-	transition: opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='partial-fade-up-slow'] {
-	opacity: 0.25;
-	transform: translateY(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='partial-fade-right-slow'] {
-	opacity: 0.25;
-	transform: translateX(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='partial-fade-down-slow'] {
-	opacity: 0.25;
-	transform: translateY(-45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateY(0);
-		transition-delay: 0s;
-	}
-}
-
-[data-aoe='partial-fade-left-slow'] {
-	opacity: 0.25;
-	transform: translateX(45px);
-	transition:
-		transform 975ms,
-		opacity 1500ms;
-
-	&.aoe {
-		opacity: 1;
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-}
-
-/** You can add your own animations by following the same in your own css file
+/** You can add your own animations by following the same pattern in your own CSS file
 [data-aoe='your-animation'] {
 	transform: translateX(-45px);
 	transition:

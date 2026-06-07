@@ -2,9 +2,9 @@
 
 # `@castlenine/svelte-aoe`
 
-[![npm.badge]][npm] [![download.badge]][download]
+[![npm.badge]][npm] [![download.badge]][download] [![contribution.badge]][contribution]
 
-A Svelte component to animate elements, without dependencies
+A Svelte component to animate elements, with no dependencies
 </div>
 
 `@castlenine/svelte-aoe` utilizes the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to detect when an element enters the viewport.
@@ -17,8 +17,8 @@ When the element is detected as being in the viewport, `@castlenine/svelte-aoe` 
 
 Use your package manager to install:
 
-```bash
-npm i @castlenine/svelte-aoe --save-dev
+```shell
+npm i @castlenine/svelte-aoe
 ```
 
 ## Setup
@@ -95,7 +95,7 @@ File: `src/routes/+layout.svelte`
 
 ### Normal speed partial fade
 
-Start wih `0.25` opacity
+Start with `0.25` opacity
 
 - `partial-fade`
 - `partial-fade-up`
@@ -105,7 +105,7 @@ Start wih `0.25` opacity
 
 ### Fast speed partial fade
 
-Start wih `0.25` opacity
+Start with `0.25` opacity
 
 - `partial-fade-fast`
 - `partial-fade-up-fast`
@@ -115,7 +115,7 @@ Start wih `0.25` opacity
 
 ### Slow speed partial fade
 
-Start wih `0.25` opacity
+Start with `0.25` opacity
 
 - `partial-fade-slow`
 - `partial-fade-up-slow`
@@ -161,3 +161,5 @@ Inspired by [Animate on Scroll](https://michalsnik.github.io/aos/) and forked fr
 [npm.badge]: https://img.shields.io/npm/v/@castlenine/svelte-aoe
 [download]: https://www.npmjs.com/package/@castlenine/svelte-aoe
 [download.badge]: https://img.shields.io/npm/d18m/@castlenine/svelte-aoe
+[contribution]: https://github.com/Castlenine/svelte-aoe
+[contribution.badge]: https://img.shields.io/badge/contributions-welcome-green

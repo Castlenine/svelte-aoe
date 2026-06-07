@@ -47,22 +47,23 @@
 
 	let isReady = false;
 
-	// @ts-ignore
-	const handleInputRootMargin = (event) => {
-		if (event.target.value !== '') {
-			rootMargin = event.target.value;
+	const handleInputRootMargin = (event: Event) => {
+		const VALUE = (event.target as HTMLInputElement).value;
+
+		if (VALUE !== '') {
+			rootMargin = VALUE;
 		} else {
 			rootMargin = '0px';
+		}
+
+		if (!rootMargin.includes('px') && !rootMargin.includes('%')) {
+			rootMargin = `${VALUE}px`;
 		}
 
 		try {
 			window.localStorage?.setItem('rootMargin', rootMargin);
 		} catch (error) {
 			console.error('handleInputRootMargin: Local storage is not available', error);
-		}
-
-		if (!rootMargin.includes('px') && !rootMargin.includes('%')) {
-			rootMargin = `${event.target.value}px`;
 		}
 
 		isReady = false;
@@ -72,15 +73,14 @@
 		}, 0);
 	};
 
-	// @ts-ignore
-	const handleInputThreshold = (event) => {
-		if (event.target.value !== '') {
-			threshold = Number(event.target.value);
+	const handleInputThreshold = (event: Event) => {
+		const VALUE = (event.target as HTMLInputElement).value;
+
+		if (VALUE !== '') {
+			threshold = Number(VALUE);
 		} else {
 			threshold = 0;
 		}
-
-		window.localStorage?.setItem('threshold', String(threshold));
 
 		try {
 			window.localStorage?.setItem('threshold', String(threshold));
@@ -120,7 +120,7 @@
 
 <svelte:head>
 	<title>@castlenine/svelte-aoe</title>
-	<meta name="description" content="A Svelte component to animate elements, without dependencies." />
+	<meta name="description" content="A Svelte component to animate elements, with no dependencies." />
 </svelte:head>
 
 {#if isReady}
