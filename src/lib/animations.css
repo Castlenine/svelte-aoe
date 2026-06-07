@@ -1,6 +1,4 @@
-/* **************************************************** */
 /* Base: shared transitions and configurable defaults */
-
 [data-aoe] {
 	--_aoe-distance: 45px;
 	--_aoe-t-transform: 600ms;
@@ -10,9 +8,7 @@
 		opacity var(--_aoe-t-opacity);
 }
 
-/* **************************************************** */
 /* Speed modifiers */
-
 [data-aoe$='-fast'] {
 	--_aoe-t-transform: 370ms;
 	--_aoe-t-opacity: 555ms;
@@ -23,9 +19,7 @@
 	--_aoe-t-opacity: 1500ms;
 }
 
-/* **************************************************** */
 /* Direction: initial displaced state */
-
 [data-aoe*='up'] {
 	transform: translateY(var(--_aoe-distance));
 }
@@ -42,9 +36,7 @@
 	transform: translateX(var(--_aoe-distance));
 }
 
-/* **************************************************** */
 /* Opacity: initial hidden state */
-
 [data-aoe^='fade'] {
 	opacity: 0;
 }
@@ -53,9 +45,7 @@
 	opacity: 0.25;
 }
 
-/* **************************************************** */
 /* Animated state */
-
 [data-aoe].aoe {
 	transition-delay: 0s;
 }

@@ -12,9 +12,23 @@ public/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Logs
+*-debug.log
+*.log
+*.log-*
+*.log.*
+*.logs
+/logs/
+
 # Ignore backup & local files
+*.backup
 *.backup.*
+*.bak
+*.bak.*
+*.local
 *.local.*
+*.local-backup
+*.local-backup.*
 
 # Env files
 .env
