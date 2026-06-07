@@ -1,28 +1,35 @@
 <!--
 @component
-### AnimateOnEnterScope
-Convenience wrapper that sets `data-aoe-scope` defaults for all `data-aoe` descendants.
-Elements inside the scope inherit these values unless they have their own `data-aoe-*` overrides.
+Wraps children in a `[data-aoe-scope]` container so nested `[data-aoe]` elements inherit its intersection observer defaults. Per-element `data-aoe-*` attributes still override scope values. Scopes can be nested; the innermost scope wins.
 
 &nbsp;
 
-@param {string | undefined} `root` - CSS selector for the root element used as the viewport.
-@param {string | undefined} `rootMargin` - Margin around the root (px or %).
-@param {number | undefined} `threshold` - Visibility percentage (0 to 1) to trigger animations.
+@prop root {string} [undefined] - CSS selector for the intersection observer root, mapped to `data-aoe-root`.
+@prop rootMargin {string} [undefined] - Root margin override, mapped to `data-aoe-root-margin`.
+@prop threshold {number} [undefined] - Threshold override, mapped to `data-aoe-threshold`.
+@prop children {Snippet} [undefined] - Default slot content.
 -->
-
 <script lang="ts">
-	export let root: string | undefined = undefined;
-	export let rootMargin: string | undefined = undefined;
-	export let threshold: number | undefined = undefined;
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { Snippet } from 'svelte';
+
+	interface Props extends HTMLAttributes<HTMLDivElement> {
+		root?: string;
+		rootMargin?: string;
+		threshold?: number;
+		children?: Snippet;
+	}
+
+	const { root, rootMargin, threshold, children, ...rest }: Props = $props();
 </script>
 
 <div
-	{...$$restProps}
+	{...rest}
 	data-aoe-scope
 	data-aoe-root={root}
 	data-aoe-root-margin={rootMargin}
-	data-aoe-threshold={threshold != null ? String(threshold) : undefined}
->
-	<slot />
+	data-aoe-threshold={threshold == null ? undefined : String(threshold)}>
+	{#if children}
+		{@render children()}
+	{/if}
 </div>

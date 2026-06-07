@@ -4,12 +4,12 @@
 
 [![npm.badge]][npm] [![download.badge]][download] [![contribution.badge]][contribution]
 
-A Svelte component to animate elements, with no dependencies
+A Svelte component for animating elements, with no dependencies.
 </div>
 
-`@castlenine/svelte-aoe` utilizes the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to detect when an element enters the viewport.
+`@castlenine/svelte-aoe` uses the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to detect when an element enters the viewport.
 
-When the element is detected as being in the viewport, `@castlenine/svelte-aoe` applies a class that triggers a CSS animation.
+When the element enters the viewport, `@castlenine/svelte-aoe` applies a class that triggers a CSS animation.
 
 ## 🚀 [Demo](https://castlenine-svelte-aoe.vercel.app/)
 
@@ -85,7 +85,7 @@ Elements are automatically detected, including those added dynamically by page n
 
 ### Normal speed partial fade
 
-Start with `0.25` opacity
+Starts with `0.25` opacity
 
 - `partial-fade`
 - `partial-fade-up`
@@ -95,7 +95,7 @@ Start with `0.25` opacity
 
 ### Fast speed partial fade
 
-Start with `0.25` opacity
+Starts with `0.25` opacity
 
 - `partial-fade-fast`
 - `partial-fade-up-fast`
@@ -105,7 +105,7 @@ Start with `0.25` opacity
 
 ### Slow speed partial fade
 
-Start with `0.25` opacity
+Starts with `0.25` opacity
 
 - `partial-fade-slow`
 - `partial-fade-up-slow`
@@ -131,35 +131,35 @@ You can add your own animations by following the same pattern in your CSS.
 
 ## Properties
 
-| Property name | Type                                         | Default value |
-| ------------- | -------------------------------------------- | ------------- |
-| `root`        | `Document`, `Element`, `null`, `undefined`   | `null`        |
-| `rootMargin`  | `string` in pixel (`px`) or percentage (`%`) | `0px`         |
-| `threshold`   | `number`, `number[]` between `0` and `1.0`   | `0.3`         |
+| Property name | Type                                          | Default value |
+| ------------- | --------------------------------------------- | ------------- |
+| `root`        | `Document`, `Element`, `null`, `undefined`    | `null`        |
+| `rootMargin`  | `string` in pixels (`px`) or percentage (`%`) | `0px`         |
+| `threshold`   | `number`, `number[]` between `0` and `1.0`    | `0.3`         |
 
-`root` is the element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target. Defaults to the browser viewport if not specified or if `null`.
+`root` is the element used as the viewport for checking the visibility of the target. It must be an ancestor of the target. If not specified or if set to `null`, it defaults to the browser viewport.
 
-`rootMargin` is the margin around the root. Can have values similar to the CSS margin property, e.g. `"10px 20px 30px 40px"` (top, right, bottom, left). The values can be percentages. Defaults to `'0px'` (no margin).
+`rootMargin` is the margin around the root. It can have values similar to the CSS margin property, e.g., `"10px 20px 30px 40px"` (top, right, bottom, left). The values can be percentages. The default is `'0px'` (no margin).
 
-`threshold` is either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. A value of `0.0` or `0` indicates that even a single pixel of the target is visible. A value of `1.0` or `1` indicates that the target is completely visible. Defaults to `0.3` (30%).
+`threshold` is either a single number or an array of numbers, indicating at what percentage of the target's visibility the observer's callback should be executed. A value of `0.0` or `0` indicates that even a single pixel of the target is visible. A value of `1.0` or `1` requires the target to be completely visible. The default is `0.3` (30%).
 
 ## Scoped Overrides
 
 Set defaults for all `data-aoe` elements within a page or section using `data-aoe-scope` on a container element, or the `<AnimateOnEnterScope>` convenience component. Elements inside a scope inherit its values unless they have their own per-element `data-aoe-*` overrides.
 
-### Using `data-aoe-scope` attribute
+### Using the `data-aoe-scope` attribute
 
 ```svelte
 <div data-aoe-scope data-aoe-threshold="0.5" data-aoe-root-margin="20px">
   <!-- All elements inside use threshold=0.5 and rootMargin=20px -->
   <img data-aoe="fade-up" src="..." />
 
-  <!-- Per-element override still takes priority -->
+  <!-- Per-element overrides still take priority -->
   <img data-aoe="fade-up" data-aoe-threshold="0.8" src="..." />
 </div>
 ```
 
-### Using `<AnimateOnEnterScope>` component
+### Using the `<AnimateOnEnterScope>` component
 
 ```svelte
 <script>
@@ -171,23 +171,23 @@ Set defaults for all `data-aoe` elements within a page or section using `data-ao
 </AnimateOnEnterScope>
 ```
 
-| Property name | Type                                         | Default value |
-| ------------- | -------------------------------------------- | ------------- |
-| `root`        | CSS selector `string`                        | `undefined`   |
-| `rootMargin`  | `string` in pixel (`px`) or percentage (`%`) | `undefined`   |
-| `threshold`   | `number` between `0` and `1.0`               | `undefined`   |
+| Property name | Type                                          | Default value |
+| ------------- | --------------------------------------------- | ------------- |
+| `root`        | CSS selector `string`                         | `undefined`   |
+| `rootMargin`  | `string` in pixels (`px`) or percentage (`%`) | `undefined`   |
+| `threshold`   | `number` between `0` and `1.0`                | `undefined`   |
 
-Scopes can be nested. The innermost scope wins.
+Scopes can be nested. The innermost scope takes precedence.
 
 ## Per-Element Overrides
 
-Individual elements can override scope or global properties using `data-aoe-*` attributes. If an attribute is not set, the value from the nearest `data-aoe-scope` ancestor is used, then `<AnimateOnEnter />`, then the package default.
+Individual elements can override scope or global properties using `data-aoe-*` attributes. If an attribute is not set, the value from the nearest `data-aoe-scope` ancestor is used, then `<AnimateOnEnter />`, and then the package default.
 
-| Attribute            | Type                                           | Overrides    |
-| -------------------- | ---------------------------------------------- | ------------ |
-| `data-aoe-root`      | CSS selector `string`                          | `root`       |
-| `data-aoe-root-margin` | `string` in pixel (`px`) or percentage (`%`) | `rootMargin` |
-| `data-aoe-threshold` | `number` between `0` and `1.0`                 | `threshold`  |
+| Attribute              | Type                                          | Overrides    |
+| ---------------------- | --------------------------------------------- | ------------ |
+| `data-aoe-threshold`   | `number` between `0` and `1.0`                | `threshold`  |
+| `data-aoe-root`        | CSS selector `string`                         | `root`       |
+| `data-aoe-root-margin` | `string` in pixels (`px`) or percentage (`%`) | `rootMargin` |
 
 ### Examples
 
@@ -198,7 +198,7 @@ Individual elements can override scope or global properties using `data-aoe-*` a
 <!-- Overrides threshold only (animates as soon as 1px is visible) -->
 <img data-aoe="fade-up" data-aoe-threshold="0" src="..." />
 
-<!-- Overrides rootMargin only (triggers 200px before entering viewport) -->
+<!-- Overrides rootMargin only (triggers 200px before entering the viewport) -->
 <img data-aoe="fade-up" data-aoe-root-margin="200px" src="..." />
 
 <!-- Overrides root to a specific scroll container -->
