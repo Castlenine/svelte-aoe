@@ -8,7 +8,8 @@ Place this component once in your root layout. Elements with `data-aoe` attribut
 #### Configuration cascade
 1. Package defaults: `root: null`, `rootMargin: '0px'`, `threshold: 0.3`
 2. Component props: override package defaults globally
-3. Per-element `data-aoe-*` attributes: override component props for individual elements
+3. `data-aoe-scope` on a container: override component props for a page or section
+4. Per-element `data-aoe-*` attributes: override scope or component props for individual elements
 
 &nbsp;
 
@@ -68,29 +69,44 @@ Place this component once in your root layout. Elements with `data-aoe` attribut
 			return observer;
 		}
 
-		function registerElement(el: Element): void {
-			if (REGISTERED.has(el) || el.classList.contains('aoe')) return;
-			REGISTERED.add(el);
-
+		function resolveConfig(el: Element): {
+			rootSelector: string | null;
+			rootMargin: string;
+			threshold: number | number[];
+		} {
 			const ROOT_ATTR = el.getAttribute('data-aoe-root');
 			const ROOT_MARGIN_ATTR = el.getAttribute('data-aoe-root-margin');
 			const THRESHOLD_ATTR = el.getAttribute('data-aoe-threshold');
 
-			if (!ROOT_ATTR && !ROOT_MARGIN_ATTR && !THRESHOLD_ATTR) {
+			const SCOPE = el.closest('[data-aoe-scope]');
+
+			const ROOT_SELECTOR = ROOT_ATTR ?? SCOPE?.getAttribute('data-aoe-root') ?? null;
+			const ROOT_MARGIN = ROOT_MARGIN_ATTR ?? SCOPE?.getAttribute('data-aoe-root-margin') ?? DEFAULT_ROOT_MARGIN;
+
+			const RAW_THRESHOLD = THRESHOLD_ATTR ?? SCOPE?.getAttribute('data-aoe-threshold');
+			const PARSED = RAW_THRESHOLD != null ? parseFloat(RAW_THRESHOLD) : NaN;
+			const THRESHOLD = !isNaN(PARSED) ? PARSED : DEFAULT_THRESHOLD;
+
+			return { rootSelector: ROOT_SELECTOR, rootMargin: ROOT_MARGIN, threshold: THRESHOLD };
+		}
+
+		function registerElement(el: Element): void {
+			if (REGISTERED.has(el) || el.classList.contains('aoe')) return;
+			REGISTERED.add(el);
+
+			const { rootSelector: ROOT_SELECTOR, rootMargin: ROOT_MARGIN, threshold: THRESHOLD } = resolveConfig(el);
+
+			if (!ROOT_SELECTOR && ROOT_MARGIN === DEFAULT_ROOT_MARGIN && THRESHOLD === DEFAULT_THRESHOLD) {
 				DEFAULT_OBSERVER.observe(el);
 				return;
 			}
 
-			const EL_ROOT = ROOT_ATTR ? document.querySelector(ROOT_ATTR) : DEFAULT_ROOT;
-			const EL_ROOT_MARGIN = ROOT_MARGIN_ATTR ?? DEFAULT_ROOT_MARGIN;
-			const PARSED_THRESHOLD = THRESHOLD_ATTR != null ? parseFloat(THRESHOLD_ATTR) : null;
-			const EL_THRESHOLD = PARSED_THRESHOLD != null && !isNaN(PARSED_THRESHOLD) ? PARSED_THRESHOLD : DEFAULT_THRESHOLD;
-
-			const KEY = configKey(ROOT_ATTR, EL_ROOT_MARGIN, EL_THRESHOLD);
+			const EL_ROOT = ROOT_SELECTOR ? document.querySelector(ROOT_SELECTOR) : DEFAULT_ROOT;
+			const KEY = configKey(ROOT_SELECTOR, ROOT_MARGIN, THRESHOLD);
 			const OBSERVER = getOrCreateObserver(KEY, {
 				root: EL_ROOT,
-				rootMargin: EL_ROOT_MARGIN,
-				threshold: EL_THRESHOLD,
+				rootMargin: ROOT_MARGIN,
+				threshold: THRESHOLD,
 			});
 			OBSERVER.observe(el);
 		}
