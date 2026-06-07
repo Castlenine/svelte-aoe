@@ -1,12 +1,29 @@
-.DS_Store
-/.svelte-kit
-/dist
-/public
-node_modules
+# Node modules
+node_modules/
 
+# SvelteKit
+.svelte-kit/
+
+# Dist output
+dist/
+
+# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Ignore backup & local files
 *.backup.*
 *.local.*
+
+# Env files
+.env
+.env.*
+##! Exception
+!.env.example
+!.env.*.example
+
+# OS generated files
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
