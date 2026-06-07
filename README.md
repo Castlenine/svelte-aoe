@@ -23,25 +23,7 @@ npm i @castlenine/svelte-aoe
 
 ## Setup
 
-- Import the package
-
-```svelte
-import AnimateOnEnter from '@castlenine/svelte-aoe';
-```
-
-- Add the component to your layout/page/component.
-
-```svelte
-<AnimateOnEnter />
-```
-
-- Add a `data-aoe` attribute to the element that you want to animate and define an animation.
-
-```svelte
-<img data-aoe="fade-up" src="https://dummyimage.com/500x300"/>
-```
-
-## Example: SvelteKit Global Setup
+1. Import and add the component **once** in your root layout:
 
 File: `src/routes/+layout.svelte`
 
@@ -54,6 +36,14 @@ File: `src/routes/+layout.svelte`
 
 <slot />
 ```
+
+2. Add a `data-aoe` attribute to any element you want to animate:
+
+```svelte
+<img data-aoe="fade-up" src="https://dummyimage.com/500x300"/>
+```
+
+Elements are automatically detected, including those added dynamically by page navigation.
 
 ## Animations
 
@@ -152,6 +142,35 @@ You can add your own animations by following the same pattern in your CSS.
 `rootMargin` is the margin around the root. Can have values similar to the CSS margin property, e.g. `"10px 20px 30px 40px"` (top, right, bottom, left). The values can be percentages. Defaults to `'0px'` (no margin).
 
 `threshold` is either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. A value of `0.0` or `0` indicates that even a single pixel of the target is visible. A value of `1.0` or `1` indicates that the target is completely visible. Defaults to `0.3` (30%).
+
+## Per-Element Overrides
+
+Individual elements can override the global properties using `data-aoe-*` attributes. If an attribute is not set, the value from `<AnimateOnEnter />` is used, which itself falls back to the package default.
+
+| Attribute            | Type                                           | Overrides    |
+| -------------------- | ---------------------------------------------- | ------------ |
+| `data-aoe-root`      | CSS selector `string`                          | `root`       |
+| `data-aoe-root-margin` | `string` in pixel (`px`) or percentage (`%`) | `rootMargin` |
+| `data-aoe-threshold` | `number` between `0` and `1.0`                 | `threshold`  |
+
+### Examples
+
+```svelte
+<!-- Uses global defaults -->
+<img data-aoe="fade-up" src="..." />
+
+<!-- Overrides threshold only (animates as soon as 1px is visible) -->
+<img data-aoe="fade-up" data-aoe-threshold="0" src="..." />
+
+<!-- Overrides rootMargin only (triggers 200px before entering viewport) -->
+<img data-aoe="fade-up" data-aoe-root-margin="200px" src="..." />
+
+<!-- Overrides root to a specific scroll container -->
+<img data-aoe="fade-up" data-aoe-root="#scroll-container" src="..." />
+
+<!-- Multiple overrides -->
+<img data-aoe="fade-up" data-aoe-threshold="0.8" data-aoe-root-margin="50px" src="..." />
+```
 
 ---
 
