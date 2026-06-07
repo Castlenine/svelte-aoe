@@ -28,7 +28,7 @@
 		"sourceMap": true, // To have warnings/errors of the Svelte compiler at the correct position, enable source maps by default
 		"strictFunctionTypes": true, // Enable strict checking of function types
 		"strictNullChecks": true, // Enable strict null checks
-		"strictPropertyInitialization": true, // Enable strict checking of property initialization in classes
+		"strictPropertyInitialization": true // Enable strict checking of property initialization in classes
 	},
 	"include": [
 		"src/**/*.d.ts",
